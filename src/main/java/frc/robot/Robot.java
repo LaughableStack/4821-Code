@@ -13,13 +13,14 @@ import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import edu.wpi.first.cameraserver.CameraServer;
-
+import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import java.util.*;
 /**
  * This is a demo program showing how to use Mecanum control with the RobotDrive
  * class.
  */
 public class Robot extends TimedRobot {
+  private BuiltInAccelerometer accel;
   private static final int kFrontLeftChannel = 1;
   private static final int kRearLeftChannel = 9;
   private static final int kFrontRightChannel = 0;
