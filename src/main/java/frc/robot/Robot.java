@@ -34,7 +34,10 @@ public class Robot extends TimedRobot {
   private Joystick btick= new Joystick(kButtonstickChannel);
   private Talon window;
   private Talon ball;
+  private double x_pow;
+  private double y_pow;
   private boolean manualControl = false;
+  private boolean manualDrive = true;
   private double powerlevel = 0;
   private CameraServer server;
   //private GamepadBase m_pad;
@@ -61,7 +64,15 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     // Use the joystick X axis for lateral movement, Y axis for forward
     // movement, and Z axis for rotation.
-    m_robotDrive.driveCartesian(stick.getRawAxis(0)*-1, stick.getRawAxis(0),
+    manualDrive = !btick.getRawButton(5);
+    if (manualDrive) {
+      x_pow = stick.getRawAxis(0)*-1;
+      y_pow = stick.getRawAxis(1);
+    } else {
+      x_pow= 0.25;
+      y_pow= 0;
+    }
+    m_robotDrive.driveCartesian(x_pow, y_pow,
         stick.getRawAxis(4), 0.0);
     if (btick.getRawButtonReleased(8) && powerlevel == 0) {
       powerlevel = 1;
