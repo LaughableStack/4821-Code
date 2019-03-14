@@ -65,7 +65,7 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     // Use the joystick X axis for lateral movement, Y axis for forward
     // movement, and Z axis for rotation.
-    manualDrive = !btick.getRawButton(5);
+    manualDrive = !stick.getRawButton(2);
     if (manualDrive) {
       x_pow = stick.getRawAxis(0)*-1;
       y_pow = stick.getRawAxis(1);
