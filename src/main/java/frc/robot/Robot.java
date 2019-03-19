@@ -25,7 +25,7 @@ public class Robot extends TimedRobot {
   private static final int kRearLeftChannel = 9;
   private static final int kFrontRightChannel = 0;
   private static final int kRearRightChannel = 8;
-  private static final int kWindow = 5;
+  private static final int kWindow = 7;
   private static final int kJoystickChannel = 0;
   private static final int kButtonstickChannel = 1;
   private static final int kBall = 4;
@@ -41,6 +41,7 @@ public class Robot extends TimedRobot {
   private boolean manualDrive = true;
   private double powerlevel = 0;
   private CameraServer server;
+  private double a;
   //private GamepadBase m_pad;
 
   @Override
@@ -65,10 +66,10 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     // Use the joystick X axis for lateral movement, Y axis for forward
     // movement, and Z axis for rotation.
-    manualDrive = !stick.getRawButton(2);
+    manualDrive = !stick.getRawButton(1);
     if (manualDrive) {
-      x_pow = stick.getRawAxis(0)*-1;
-      y_pow = stick.getRawAxis(1);
+      x_pow = stick.getRawAxis(0);
+      y_pow = stick.getRawAxis(1)*-1;
     } else {
       x_pow= 0.25;
       y_pow= 0;
@@ -88,24 +89,24 @@ public class Robot extends TimedRobot {
       }, 635);
     }
     if (btick.getRawButton(2)) {
-      ball.set(-0.75);
+      ball.set(0.75);
     }
-    else if (btick.getRawButton(1)) {
-      ball.set(1);
+    else if (btick.getRawButton(3)) {
+      ball.set(-1);
     }
     else {
       ball.set(0);
     }
     if (manualControl) {
-      window.set(powerlevel);
+      window.set(powerlevel*0.2);
     }
     else {
-      var a = 0;
-      if (btick.getRawButton(3)) {
-        a = 1;
+       a = 0.0;
+      if (btick.getRawButton(1)) {
+        a = 0.4;
       }
       else if (btick.getRawButton(4)) {
-        a = -1;
+        a = -0.2;
       }
       window.set(a);
     }
