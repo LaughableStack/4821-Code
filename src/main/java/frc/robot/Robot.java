@@ -15,10 +15,6 @@ import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import java.util.*;
-/**
- * This is a demo program showing how to use Mecanum control with the RobotDrive
- * class.
- */
 public class Robot extends TimedRobot {
   private BuiltInAccelerometer accel;
   private static final int kFrontLeftChannel = 1;
@@ -42,7 +38,6 @@ public class Robot extends TimedRobot {
   private double powerlevel = 0;
   private CameraServer server;
   private double a;
-  //private GamepadBase m_pad;
 
   @Override
   public void robotInit() {
