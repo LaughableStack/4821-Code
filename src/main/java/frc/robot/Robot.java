@@ -36,7 +36,7 @@ public class Robot extends TimedRobot {
   private double powerlevel = 0;
   private CameraServer server;
   private double a;
-
+  private double speed = 1;
   @Override
   public void robotInit() {
     Spark frontLeft = new Spark(kFrontLeftChannel);
@@ -61,8 +61,8 @@ public class Robot extends TimedRobot {
     // movement, and Z axis for rotation.
     manualDrive = !stick.getRawButton(1);
     if (manualDrive) {
-      x_pow = stick.getRawAxis(0);
-      y_pow = stick.getRawAxis(1)*-1;
+      x_pow = stick.getRawAxis(0)*speed;
+      y_pow = stick.getRawAxis(1)*-speed;
     } else {
       x_pow= 0.25;
       y_pow= 0;
@@ -91,15 +91,15 @@ public class Robot extends TimedRobot {
       ball.set(0);
     }
     if (manualControl) {
-      window.set(powerlevel*0.2);
+      window.set(powerlevel*speed);
     }
     else {
        a = 0.0;
       if (btick.getRawButton(1)) {
-        a = 0.4;
+        a = speed;
       }
       else if (btick.getRawButton(4)) {
-        a = -0.2;
+        a = -speed;
       }
       window.set(a);
     }
